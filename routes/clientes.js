@@ -4,7 +4,7 @@ const mysql = require('../mysql').pool;
 const clientesController = require('../controllers/clientes-controller');
 
 //RETORNA TODOS OS CLIENTES
-router.get('/', clientesController.getCliente); 
+router.get('/', clientesController.getClientes); 
    
 //RETORNA PELO ID DO CLIENTE
 router.get('/:id', clientesController.getUmCliente);
