@@ -1,0 +1,7 @@
+//*** DELETE USER ***//
+DELETE http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+    "id_produto": 1,
+}

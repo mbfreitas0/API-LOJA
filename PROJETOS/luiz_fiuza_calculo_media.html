@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da Média</title>
+    <style>
+        body{
+            font: normal 12pt Arial;
+
+        }
+        input{
+            font: normal 12pt Arial;
+            width: 200px;
+        }
+        div#res{
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>App para Cálculo da Média do Aluno</h1>
+
+    
+      
+        <form>
+            Nome do Aluno:<br>
+            <input type="text" id="aluno"><br>Nota 1:<br>
+            <input type="number" id="n1"><br> Nota 2:<br>
+            <input type="number" id="n2"><br> Nota 3:<br>
+            <input type="number" id="n3"><br> Nota 4:<br>
+            <input type="number" id="n4"><br><br>
+            <input type="button" value="Calcular a Média" onclick="calculoMedia()">        
+            <div id = "res">Resultado</div>
+            
+          </form>
+          
+    <script>
+        //Função para calcular a média do aluno
+        function calculoMedia() {         
+            
+            //Declaração das variáveis que irão obter os id's dos objetos para manipulação
+            
+                       
+            //Obtendo os inputs e alocando-os nas variáveis
+            let aluno = document.getElementById('aluno').value
+            let n1 = Number(document.getElementById('n1').value)
+            let n2 = Number(document.getElementById('n2').value)
+            let n3 = Number(document.getElementById('n3').value)
+            let n4 = Number(document.getElementById('n4').value)
+            let res = document.getElementById('res')
+            
+            //Cálculo da média
+            let med = (n1 + n2 + n3 + n4) / 4;
+            
+            //Exibição da média           
+
+            res.innerHTML = `A média do aluno: <b>${aluno}</b> é <b>${med}</b>`
+        }
+        
+    </script>
+    
+</body>
+</html>

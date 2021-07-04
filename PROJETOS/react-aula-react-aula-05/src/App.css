@@ -1,0 +1,11 @@
+.botao-ligado {
+  background-color: #007bff;
+  border-width: 2px;
+  border-color: #00FF00;
+}
+
+.botao-desligado {
+  background-color: #dc3545;
+  border-width: 1px;
+  border-color: #333333;
+}
