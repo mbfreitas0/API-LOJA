@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
-const multer = require('multer');
+//const multer = require('multer');
 const login = require('../middleware/login');
 
-const storage = multer.diskStorage({
+/* const storage = multer.diskStorage({
     destination: function (req, file, cb){
         cb(null, './uploads/');
     },
@@ -26,14 +26,14 @@ const upload = multer({
     },
     fileFilter:fileFilter
  });
-
+ */
  
  const produtosController = require('../controllers/produtos-controller');
 
 //RETORNA TODOS OS PRODUTOS
 router.get('/', produtosController.getProdutos);
 //INSERE UM PRODUTO
-router.post('/',login.obrigatorio, upload.single('imagem_produto'),produtosController.postProduto);  
+router.post('/',login.obrigatorio, produtosController.postProduto);  
 
 //RETORNA OS DADOS DE UM PRODUTO
 router.get('/:id', produtosController.getUmproduto);
