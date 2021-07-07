@@ -9,7 +9,7 @@ const rotaMarca = require('./routes/marca');
 const rotaLocacao = require('./routes/locacao');
 const rotaCliente = require('./routes/clientes');
 const rotaClientePJ = require('./routes/clientepj');
-const rotaFornecedor = require('./routes/fornecedor');
+const rotaFornecedores = require('./routes/fornecedor');
 const rotaEntradaProduto = require('./routes/entrada_produtos');
 const rotaSaidaProduto = require('./routes/saida_produto');
 const morgan = require('morgan');
@@ -45,7 +45,7 @@ app.use('/marca', rotaMarca);
 app.use('/locacao', rotaLocacao);
 app.use('/cliente', rotaCliente);
 app.use('/clientepj', rotaClientePJ);
-app.use('/fornecedor', rotaFornecedor);
+app.use('/fornecedores', rotaFornecedores);
 
 //QUANDO NÃO É ENCONTRADA A ROTA
 app.use((req, res, next) =>{

@@ -1,18 +1,18 @@
 const mysql = require('../mysql').pool;
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+//const jwt = require('jsonwebtoken');
+//const bcrypt = require('bcrypt');
 
 exports.cadastroFornecedor = (req, res, next)=>{
     mysql.getConnection((error, conn)=>{
         if(error){return res.status(500).send({error:error})}
-        conn.query('SELECT * FROM fornecedores WHERE nome = ?, endereco = ?, cep = ?, cidade = ?, uf = ?, telefone = ?, cnpj = ?, ie = ?, email = ?',
+        conn.query('SELECT * FROM fornecedores WHERE nome = ?, endereco = ?, cep = ?, cidade = ?, uf = ?, telefone = ?, cnpj = ?, ie = ?, email = ?;',
         [req.body.nome, req.body.endereco, req.body.cep, req.body.cidade, req.body.uf, req.body.telefone, req.body.cnpj, req.body.ie, req.body.email],(error, results)=>{
             if(error){return res.status(500).send({error:error})}
                 if(results.length > 0){
                     res.status(409).send({mensagem: 'Fornecedor já cadastrado'})
                     }else{
                          conn.query(
-                            'INSERT INTO fornecedores (nome, endereco, cidade, uf, cep, telefone, cnpj, ie, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                            'INSERT INTO fornecedores (nome, endereco, cidade, uf, cep, telefone, cnpj, ie, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);',
                             [req.body.nome, req.body.endereco, req.body.cidade, req.body.uf, req.body.cep, req.body.telefone, req.body.cnpj, req.body.ie, req.body.email],
                             (error, results)=>{
                                 conn.release();
@@ -51,7 +51,7 @@ exports.getFornecedor = (req, res, next) => {
                 if(error){return res.status(500).send({ error : error })}
                 const response = {
                  
-                 clientes: result.map(cli =>{
+                 fornecedores: result.map(cli =>{
                      return {
                          id: cli.id,
                          nome: cli.nome,
@@ -91,7 +91,7 @@ exports.getUmFornecedor = (req, res, next) => {
                     }                
                 const response = {
                     mensagem: 'Fornecedor inserido com sucesso',
-                    usuario:{
+                    fornecedor:{
                         id: result[0].id,
                         nome:result[0].nome,
                         endereco:result[0].endereco,
@@ -120,14 +120,14 @@ exports.updateFornecedor = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE fornecedores SET nome = ? WHERE id = ?',
+           'UPDATE fornecedores SET nome = ? WHERE id = ?;',
             [req.body.nome,],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
                 const response = {
                     mensagem: 'Fornecedor atualizado com sucesso',
-                    grupoAtualizado:{
+                    fornecedorAtualizado:{
                         id: req.body.id,
                         nome: req.body.nome,
                         endereco: req.body.endereco,

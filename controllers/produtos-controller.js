@@ -33,7 +33,7 @@ exports.getUmproduto = (req, res, next) => {
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error:error })}
         conn.query(
-            'SELECT * FROM produtos WHERE id = ?;',
+            'SELECT * FROM produtos WHERE id = ?',
             [req.params.id],
             (error, result, field) => {
                 conn.release();
