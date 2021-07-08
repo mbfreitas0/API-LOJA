@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
 const marcaController = require('../controllers/marca-controller');
+const login = require('../middleware/login');
+
 
 //RETORNA TODAS AS MARCAS
 router.get('/', marcaController.getMarca); 

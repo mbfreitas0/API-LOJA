@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
 const grupoController = require('../controllers/grupo-controller');
+const login = require('../middleware/login');
+
 
 //RETORNA TODOS OS PEDIDOS
 router.get('/', grupoController.getGrupo); 
