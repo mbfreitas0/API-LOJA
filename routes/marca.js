@@ -7,17 +7,17 @@ const marcaController = require('../controllers/marca-controller');
 router.get('/', marcaController.getMarca); 
    
 //RETORNA PELO ID DA MARCA
-router.get('/:id', marcaController.getUmaMarca);
+router.get('/:id', login.obrigatorio, marcaController.getUmaMarca);
 
 
 //INSERE UMA MARCA
-router.post('/',marcaController.postMarca); 
+router.post('/', login.obrigatorio, marcaController.postMarca); 
 
 //UPDATE DAS MARCAS
-router.patch('/',marcaController.updateMarca);
+router.patch('/', login.obrigatorio, marcaController.updateMarca);
 
 //DELETA UMA MARCA
-router.delete('/',marcaController.deleteMarca);   
+router.delete('/', login.obrigatorio, marcaController.deleteMarca);   
 
 
 module.exports = router;

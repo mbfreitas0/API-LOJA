@@ -37,7 +37,7 @@ router.get('/', saidaprodutoController.getSaidaProdutos);
 //router.post('/',login.obrigatorio, upload.single('imagem_produto'),produtosController.postProduto);  
 
 //RETORNA OS DADOS DE UM PRODUTO
-router.get('/:id', saidaprodutoController.getSaidaDeUmProduto);
+router.get('/:id', login.obrigatorio, saidaprodutoController.getSaidaDeUmProduto);
 
 //ALTERA UM PRODUTO
 router.patch('/',login.obrigatorio, saidaprodutoController.updateSaidaProduto);

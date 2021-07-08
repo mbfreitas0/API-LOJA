@@ -8,14 +8,14 @@ const login = require('../middleware/login');
 router.get('/', fornecedorController.getFornecedor); 
    
 //RETORNA PELO ID DO FORNECEDOR
-router.get('/:id', fornecedorController.getUmFornecedor);
+router.get('/:id', login.obrigatorio, fornecedorController.getUmFornecedor);
 
 
 //INSERE UM FORNECEDOR
-router.post('/', login.obrigatorio,fornecedorController.cadastroFornecedor); 
+router.post('/', login.obrigatorio, login.obrigatorio,fornecedorController.cadastroFornecedor); 
 
 //UPDATE NO FORNECEDOR
-router.patch('/', login.obrigatorio, fornecedorController.updateFornecedor);
+router.patch('/', login.obrigatorio, login.obrigatorio, fornecedorController.updateFornecedor);
 
 //DELETA UM FORNECEDOR
 router.delete('/', login.obrigatorio,fornecedorController.deleteFornecedor);   

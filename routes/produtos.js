@@ -36,7 +36,7 @@ router.get('/', produtosController.getProdutos);
 router.post('/',login.obrigatorio, produtosController.postProduto);  
 
 //RETORNA OS DADOS DE UM PRODUTO
-router.get('/:id', produtosController.getUmproduto);
+router.get('/:id', login.obrigatorio,produtosController.getUmproduto);
 
 //ALTERA UM PRODUTO
 router.patch('/',login.obrigatorio, produtosController.updateProduto);

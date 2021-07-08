@@ -12,13 +12,13 @@ router.get('/:id', locacaoController.getUmaLocacao);
 
 
 //INSERE UMA LOCACAO
-router.post('/',login.obrigatorio, locacaoController.postLocacao); 
+router.post('/', login.obrigatorio, login.obrigatorio, locacaoController.postLocacao); 
 
 //UPDATE DAS LOCACAO
-router.patch('/',locacaoController.updateLocacao);
+router.patch('/', login.obrigatorio, locacaoController.updateLocacao);
 
 //DELETA UMA LOCACAO
-router.delete('/',locacaoController.deleteLocacao);   
+router.delete('/', login.obrigatorio, locacaoController.deleteLocacao);   
 
 
 module.exports = router;

@@ -17,7 +17,7 @@ router.post('/',pedidosController.postPedidos);
 router.patch('/',pedidosController.updatePedidos);
 
 //DELETA UM PEDIDO
-router.delete('/',pedidosController.deletePedidos);   
+router.delete('/',login.obrigatorio,pedidosController.deletePedidos);   
 
 
 module.exports = router;
