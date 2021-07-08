@@ -5,7 +5,7 @@ const mysql = require('../mysql').pool;
 exports.cadastroFornecedor = (req, res, next)=>{
     mysql.getConnection((error, conn)=>{
         if(error){return res.status(500).send({error:error})}
-        conn.query('SELECT * FROM fornecedores WHERE nome = ?, endereco = ?, cep = ?, cidade = ?, uf = ?, telefone = ?, cnpj = ?, ie = ?, email = ?;',
+        conn.query('SELECT * FROM fornecedores WHERE nome = ?, endereco = ?, cep = ?, cidade = ?, uf = ?, telefone = ?, cnpj = ?, ie = ?, email = ?',
         [req.body.nome, req.body.endereco, req.body.cep, req.body.cidade, req.body.uf, req.body.telefone, req.body.cnpj, req.body.ie, req.body.email],(error, results)=>{
             if(error){return res.status(500).send({error:error})}
                 if(results.length > 0){
@@ -120,7 +120,7 @@ exports.updateFornecedor = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE fornecedores SET nome = ? WHERE id = ?;',
+           'UPDATE fornecedores SET nome = ?, endereco = ?, cidade = ?, uf = ?, cep = ?, telefone = ?, cnpj = ?, ie = ?, email = ? WHERE id = ?   ',
             [req.body.nome,],
             (error, result, field) => {
                 conn.release();

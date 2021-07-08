@@ -67,7 +67,7 @@ exports.postGrupo = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'INSERT INTO grupo(grupo) VALUES (?)',
+           'INSERT INTO grupo(grupo) VALUES (?);',
             [req.body.grupo, req.file.path],
             (error, result, field) => {
                 conn.release();
@@ -95,7 +95,7 @@ exports.updateGrupo = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE grupo SET grupo = ? WHERE id = ?',
+           'UPDATE grupo SET grupo = ? WHERE id = ?;',
             [req.body.grupo,],
             (error, result, field) => {
                 conn.release();
@@ -123,7 +123,7 @@ exports.deleteGrupo = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'DELETE FROM grupo WHERE id = ?',
+           'DELETE FROM grupo WHERE id = ?;',
             [req.body.id],
             (error, resultado, field) => {
                 conn.release();

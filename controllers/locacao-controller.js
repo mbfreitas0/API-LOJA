@@ -95,7 +95,7 @@ exports.updateLocacao = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE locacao SET nome = ? WHERE id_locacao = ?',
+           'UPDATE locacao SET nome = ? WHERE id_locacao = ?;',
             [req.body.nome,],
             (error, result, field) => {
                 conn.release();
@@ -123,7 +123,7 @@ exports.deleteLocacao = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'DELETE FROM locacao WHERE id_locacao = ?',
+           'DELETE FROM locacao WHERE id_locacao = ?;',
             [req.body.id_locacao],
             (error, resultado, field) => {
                 conn.release();
