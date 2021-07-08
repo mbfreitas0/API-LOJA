@@ -11,12 +11,12 @@ exports.getGrupo = (req, res, next) => {
                  quantidade: result.length,
                  grupo: result.map(grup =>{
                      return {
-                         id_grupo: grup.id_grupo,
-                         nome: grup.nome,
+                         id: grup.id,
+                         grupo: grup.grupo,
                          request: {
                              tipo: 'GET',
                              descricao: 'Retorna os detalhes de um grupo específico',
-                             url: 'http://localhost:3000/grupo/' + grup.id_grupo
+                             url: 'http://localhost:3000/grupo/' + grup.id
                            }   
                         }
                    })   
@@ -31,8 +31,8 @@ exports.getUmGrupo = (req, res, next) => {
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error:error })}
         conn.query(
-            'SELECT * FROM grupo WHERE id_grupo = ?;',
-            [req.params.id_grupo],
+            'SELECT * FROM grupo WHERE id = ?;',
+            [req.params.id],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
@@ -46,8 +46,8 @@ exports.getUmGrupo = (req, res, next) => {
                 const response = {
                     mensagem: 'Grupo inserido com sucesso',
                     produto:{
-                        id_grupo:result[0].id_grupo,
-                        nome: result[0].nome,
+                        id:result[0].id,
+                        grupo: result[0].grupo,
                         request: {
                             tipo: 'GET',
                             descricao: 'Retorna todos os grupos',
@@ -67,16 +67,16 @@ exports.postGrupo = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'INSERT INTO grupo(nome) VALUES (?)',
-            [req.body.nome, req.file.path],
+           'INSERT INTO grupo(grupo) VALUES (?)',
+            [req.body.grupo, req.file.path],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
                 const response = {
                     mensagem: 'Grupo inserido com sucesso',
                     grupoCriado:{
-                        id_grupo: req.body.id_grupo,
-                        nome: req.body.nome,
+                        id: req.body.id,
+                        grupo: req.body.grupo,
                         request: {
                             tipo: 'POST',
                             descricao: 'Insere um grupo',
@@ -95,20 +95,20 @@ exports.updateGrupo = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE grupo SET nome = ? WHERE id_grupo = ?',
-            [req.body.nome,],
+           'UPDATE grupo SET grupo = ? WHERE id = ?',
+            [req.body.grupo,],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
                 const response = {
                     mensagem: 'Grupo atualizado com sucesso',
                     grupoAtualizado:{
-                        id_grupo: req.body.id_grupo,
-                        nome: req.body.nome,                        
+                        id: req.body.id,
+                        grupo: req.body.grupo,                        
                         request: {
                             tipo: 'GET',
                             descricao: 'Retorna os detalhes de um produto específico',
-                            url: 'http://localhost:3000/produtos/' + req.body.id_grupo
+                            url: 'http://localhost:3000/produtos/' + req.body.id
                         }
                     }
                             
@@ -123,8 +123,8 @@ exports.deleteGrupo = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'DELETE FROM grupo WHERE id_grupo = ?',
-            [req.body.id_grupo],
+           'DELETE FROM grupo WHERE id = ?',
+            [req.body.id],
             (error, resultado, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
@@ -135,8 +135,8 @@ exports.deleteGrupo = (req, res, next) =>{
                         descricao: 'Insere um grupo',
                         url: 'http://localhost:3000/grupo/',
                         body:{
-                            id_grupo: 'Number',
-                            nome: 'String',
+                            id: 'Number',
+                            grupo: 'String',
                             
                         }
                     }

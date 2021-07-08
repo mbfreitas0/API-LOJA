@@ -7,7 +7,7 @@ const marcaController = require('../controllers/marca-controller');
 router.get('/', marcaController.getMarca); 
    
 //RETORNA PELO ID DA MARCA
-router.get('/:id_marca', marcaController.getUmaMarca);
+router.get('/:id', marcaController.getUmaMarca);
 
 
 //INSERE UMA MARCA

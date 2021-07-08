@@ -7,7 +7,7 @@ const grupoController = require('../controllers/grupo-controller');
 router.get('/', grupoController.getGrupo); 
    
 //RETORNA PELO ID DO PEDIDO
-router.get('/:id_grupo', grupoController.getUmGrupo);
+router.get('/:id', grupoController.getUmGrupo);
 
 
 //INSERE UM PEDIDO
