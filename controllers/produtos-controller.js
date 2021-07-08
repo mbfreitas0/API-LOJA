@@ -75,7 +75,7 @@ exports.postProduto = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'INSERT INTO produtos(id_grupo, id_marca, id_locacao, status, descricao, estoque_min, estoque_max) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            'INSERT INTO produtos(id_grupo, id_marca, id_locacao, status, descricao, estoque_min, estoque_max) VALUES (?, ?, ?, ?, ?, ?, ?)',
             [req.body.id_grupo, req.body.id_marca, req.body.id_locacao, req.body.status, req.body.descricao, req.body.estoque_min, req.body.estoque_max],
             (error, result, field) => {
                 conn.release();
@@ -112,7 +112,7 @@ exports.updateProduto = (req, res, next) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
            'UPDATE produtos SET id_grupo = ?, id_marca = ?, id_locacao = ?, status = ?, descricao = ?, estoque_min = ?, estoque_max = ?  WHERE id = ?',
-           [req.body.id_grupo, req.body.id_marca, req.body.id_locacao, req.body.descricao, req.body.estoque_max, req.body.estoque_min, req.body.qtd_estoque, req.body.imagem_produto],
+           [req.body.id_grupo, req.body.id_marca, req.body.id_locacao, req.body.descricao, req.body.estoque_min, req.body.estoque_max],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
