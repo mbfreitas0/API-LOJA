@@ -101,7 +101,54 @@ exports.postProduto = (req, res, next) =>{
     });
 }
 
-exports.updateProduto = (req, res, next) =>{
+// Modificar produto
+exports.updateProduto = async (req, res, next) => {
+
+    try {
+        const query = ` UPDATE produtos
+                           SET id_grupo     = ?,
+                               id_marca     = ?
+                               id_locacao   = ?
+                               status       = ?
+                               descricao    = ?
+                               estoque_min  = ?
+                               estoque_max  = ?
+                         WHERE id           = ?`;
+        await mysql.execute(query, [
+            req.body.id_grupo,
+            req.body.id_marca,
+            req.body.id_locacao,
+            req.body.status,
+            req.body.descricao,
+            req.body.estoque_min,
+            req.body.estoque_max,
+            req.params.id
+        ]);
+        const response = {
+            message: 'Produto atualizado com sucesso',
+            upatedProduct: {
+                id: req.params.id,
+                id_grupo: req.body.id_grupo,
+                id_marca: req.body.id_marca,
+                id_locacao: req.body.id_locacao,
+                status: req.body.status,
+                descricao: req.body.descricao,
+                estoque_min: req.body.estoque_min,
+                estoque_max: req.body.estoque_max,
+                request: {
+                    type: 'GET',
+                    description: 'Retorna os detalhes de um produto específico',
+                    url: process.env.URL_API + 'produtos/' + req.params.id
+                }
+            }
+        }
+        return res.status(202).send(response);
+    } catch (error) {
+        return res.status(500).send({ error: error });
+    }
+};
+
+/* exports.updateProduto = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
@@ -112,9 +159,9 @@ exports.updateProduto = (req, res, next) =>{
            status = ?,
            descricao = ?,
            estoque_min = ?,
-           estoque_max = ?  WHERE id = ?;`,
+           estoque_max = ?  WHERE id = ?`,
            [
-            req.body.id,
+            req.params.id,
             req.body.id_grupo,
             req.body.id_marca,
             req.body.id_locacao,
@@ -146,7 +193,7 @@ exports.updateProduto = (req, res, next) =>{
             }
         )   
     });
-}
+} */
 
 exports.deleteProduto = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{

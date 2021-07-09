@@ -20,21 +20,21 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({extended: false}));//ENTRADA DE DADOS SIMPLES
 app.use(express.json());//ENTRADA DO EXPRESS.URLENCODED EM FORMATO JSON
 
-app.use((req, res, next) =>{
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.header('Access-Control-Allow-Header', '*');
-    res.header('Origin, x-Requested-With, Content-Type, Access, Authorization');
+    res.header(
+        'Access-Control-Allow-Header',
+        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
 
-    if(req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATH, DELETE, GET');
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
         return res.status(200).send({});
     }
     next();
-}  
-    
-);
- 
+});
+
+
 app.use('/produtos', rotaProdutos);
 app.use('/entradaprodutos',rotaEntradaProduto);
 app.use('/saidaproduto',rotaSaidaProduto);
