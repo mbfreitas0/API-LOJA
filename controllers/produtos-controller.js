@@ -11,21 +11,25 @@ exports.getProdutos = async (req, res, next)=> {
             })
         }
         const response = {
-            product: {
-                id: result[0].id,
-                id_grupo:result[0].id_grupo,
-                id_marca:result[0].id_marca,
-                id_locacao:result[0].id_locacao,
-                status:result[0].status,
-                descricao: result[0].descricao,
-                estoque_min: result[0].estoque_min,
-                estoque_max: result[0].estoque_max, 
-                request: {
-                    type: 'GET',
-                    description: 'Retorna todos os produtos',
-                    url: process.env.URL_API + 'produtos'
+            length: result.length,
+            produtos: result.map(prod => {
+                return {
+
+                    id: prod.id,
+                    id_grupo: prod.id_grupo,
+                    id_marca: prod.id_marca,
+                    id_locacao: prod.id_locacao,
+                    status: prod.status,
+                    descricao: prod.descricao,
+                    estoque_min: prod.estoque_min,
+                    estoque_max: prod.estoque_max,
+                    request: {
+                        type: 'GET',
+                        description: 'Retorna os detalhes de um produto específico',
+                        url: process.env.URL_API + 'produtos/' + prod.id
+                    }
                 }
-            }
+            })
         }
         return res.status(200).send(response);
     } catch (error) {
