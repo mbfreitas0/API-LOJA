@@ -105,7 +105,7 @@ exports.getUmFornecedor = (req, res, next) => {
                         request: {
                             tipo: 'GET',
                             descricao: 'Retorna todos os fornecedores',
-                            url: 'http://localhost:3000/fornecedor/'
+                            url: 'http://localhost:3000/fornecedores/'
                         }
                     }
                             
@@ -120,8 +120,29 @@ exports.updateFornecedor = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE fornecedores SET nome = ?, endereco = ?, cidade = ?, uf = ?, cep = ?, telefone = ?, cnpj = ?, ie = ?, email = ? WHERE id = ?   ',
-            [req.body.nome,],
+            `UPDATE fornecedores SET 
+                nome = ?,
+                endereco = ?,
+                cidade = ?,
+                uf = ?,
+                cep = ?,
+                telefone = ?,
+                cnpj = ?,
+                ie = ?,
+                email           
+                WHERE id = ?`,
+            [
+                req.body.id,
+                req.body.nome,
+                req.body.endereco,
+                req.body.cidade,
+                req.body.uf,
+                req.body.cep,
+                req.body.telefone,
+                req.body.cnpj,
+                req.body.ie,
+                req.body.email
+            ],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
@@ -141,7 +162,7 @@ exports.updateFornecedor = (req, res, next) =>{
                         request: {
                             tipo: 'GET',
                             descricao: 'Retorna os detalhes de um fornecedor específico',
-                            url: 'http://localhost:3000/fornecedor/' + req.body.id
+                            url: 'http://localhost:3000/fornecedores/' + req.body.id
                         }
                     }
                             
@@ -166,7 +187,7 @@ exports.deleteFornecedor = (req, res, next) =>{
                     request: {
                         tipo: 'POST',
                         descricao: 'Insere um cliente PJ',
-                        url: 'http://localhost:3000/fornecedor/',
+                        url: 'http://localhost:3000/fornecedores/',
                         body:{
                             nome: 'String',
                             endereco: 'String',

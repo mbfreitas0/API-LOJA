@@ -16,7 +16,7 @@ router.get('/:id', login.obrigatorio, marcaController.getUmaMarca);
 router.post('/', login.obrigatorio, marcaController.postMarca); 
 
 //UPDATE DAS MARCAS
-router.patch('/', login.obrigatorio, marcaController.updateMarca);
+router.patch('/:id', login.obrigatorio, marcaController.updateMarca);
 
 //DELETA UMA MARCA
 router.delete('/', login.obrigatorio, marcaController.deleteMarca);   

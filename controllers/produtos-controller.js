@@ -92,12 +92,6 @@ exports.postProduto = (req, res, next) =>{
                         estoque_min: req.body.estoque_min,
                         estoque_max: req.body.estoque_max,
                         
-                        
-                        request: {
-                            tipo: 'POST',
-                            descricao: 'Insere um produto',
-                            url: 'http://localhost:3000/produtos/'
-                        }
                     }
                             
                 }
@@ -111,8 +105,24 @@ exports.updateProduto = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE produtos SET id_grupo = ?, id_marca = ?, id_locacao = ?, status = ?, descricao = ?, estoque_min = ?, estoque_max = ?  WHERE id = ?',
-           [req.body.id_grupo, req.body.id_marca, req.body.id_locacao, req.body.descricao, req.body.estoque_min, req.body.estoque_max],
+          `UPDATE produtos SET 
+           id_grupo = ?,
+           id_marca = ?,
+           id_locacao = ?,
+           status = ?,
+           descricao = ?,
+           estoque_min = ?,
+           estoque_max = ?  WHERE id = ?;`,
+           [
+            req.body.id,
+            req.body.id_grupo,
+            req.body.id_marca,
+            req.body.id_locacao,
+            req.body.status,
+            req.body.descricao,
+            req.body.estoque_min,
+            req.body.estoque_max
+            ],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}
@@ -127,12 +137,8 @@ exports.updateProduto = (req, res, next) =>{
                         descricao: req.body.descricao,                        
                         estoque_min: req.body.estoque_min,
                         estoque_max: req.body.estoque_max,
-                        
-                        request: {
-                            tipo: 'GET',
-                            descricao: 'Retorna os detalhes de um produto específico',
-                            url: 'http://localhost:3000/produtos/' + req.body.id
-                        }
+                       
+                       
                     }
                             
                 }

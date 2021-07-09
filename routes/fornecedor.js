@@ -15,7 +15,7 @@ router.get('/:id', login.obrigatorio, fornecedorController.getUmFornecedor);
 router.post('/', login.obrigatorio, login.obrigatorio,fornecedorController.cadastroFornecedor); 
 
 //UPDATE NO FORNECEDOR
-router.patch('/', login.obrigatorio, login.obrigatorio, fornecedorController.updateFornecedor);
+router.patch('/:id', login.obrigatorio, login.obrigatorio, fornecedorController.updateFornecedor);
 
 //DELETA UM FORNECEDOR
 router.delete('/', login.obrigatorio,fornecedorController.deleteFornecedor);   

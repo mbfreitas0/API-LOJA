@@ -16,7 +16,7 @@ router.get('/:id', login.obrigatorio, grupoController.getUmGrupo);
 router.post('/', login.obrigatorio, grupoController.postGrupo); 
 
 //UPDATE DOS PEDIDOS
-router.patch('/', login.obrigatorio, grupoController.updateGrupo);
+router.patch('/:id', login.obrigatorio, grupoController.updateGrupo);
 
 //DELETA UM PEDIDO
 router.delete('/', login.obrigatorio, grupoController.deleteGrupo);   

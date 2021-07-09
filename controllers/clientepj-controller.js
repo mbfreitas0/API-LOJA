@@ -120,8 +120,29 @@ exports.updateClientePJ = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
-           'UPDATE clientepj SET nome = ? WHERE id = ?',
-            [req.body.nome,],
+           `UPDATE clientepj SET 
+            nome = ?,
+            endereco = ?,
+            cidade = ?,
+            uf = ?,
+            cep = ?,
+            telefone = ?,
+            cnpj = ?,
+            ie = ?,
+            email           
+                WHERE id = ?`,
+            [
+                req.body.id,
+                req.body.nome,
+                req.body.endereco,
+                req.body.cidade,
+                req.body.uf,
+                req.body.cep,
+                req.body.telefone,
+                req.body.cnpj,
+                req.body.ie,
+                req.body.email
+            ],
             (error, result, field) => {
                 conn.release();
                 if(error){return res.status(500).send({ error : error })}

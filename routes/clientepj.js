@@ -16,7 +16,7 @@ router.get('/:id', clientepjController.getUmClientePJ);
 router.post('/',clientepjController.cadastroClientePJ); 
 
 //UPDATE NO CLIENTE
-router.patch('/',clientepjController.updateClientePJ);
+router.patch('/:id',clientepjController.updateClientePJ);
 
 //DELETA UM CLIENTE
 router.delete('/',clientepjController.deleteClientePJ);   

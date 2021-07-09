@@ -15,7 +15,7 @@ router.get('/:id', locacaoController.getUmaLocacao);
 router.post('/', login.obrigatorio, login.obrigatorio, locacaoController.postLocacao); 
 
 //UPDATE DAS LOCACAO
-router.patch('/', login.obrigatorio, locacaoController.updateLocacao);
+router.patch('/:id', login.obrigatorio, locacaoController.updateLocacao);
 
 //DELETA UMA LOCACAO
 router.delete('/', login.obrigatorio, locacaoController.deleteLocacao);   

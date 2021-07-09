@@ -39,7 +39,7 @@ router.post('/',login.obrigatorio, produtosController.postProduto);
 router.get('/:id', login.obrigatorio,produtosController.getUmproduto);
 
 //ALTERA UM PRODUTO
-router.patch('/',login.obrigatorio, produtosController.updateProduto);
+router.put('/:id',login.obrigatorio, produtosController.updateProduto);
 
 //DELETA UM PRODUTO
 router.delete('/', login.obrigatorio, produtosController.deleteProduto);   

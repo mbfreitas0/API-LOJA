@@ -40,7 +40,7 @@ router.get('/', entradaprodutosController.getEntradaProdutos);
 router.get('/:id', entradaprodutosController.getEntradaDeUmProduto);
 
 //ALTERA UM PRODUTO
-router.patch('/',login.obrigatorio, entradaprodutosController.updateEntradaProduto);
+router.patch('/:id',login.obrigatorio, entradaprodutosController.updateEntradaProduto);
 
 //DELETA UM PRODUTO
 router.delete('/', login.obrigatorio, entradaprodutosController.deleteEntradaProduto);   

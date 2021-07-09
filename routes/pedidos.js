@@ -16,7 +16,7 @@ router.get('/:id_pedido', pedidosController.getUmpedido);
 router.post('/',pedidosController.postPedidos); 
 
 //UPDATE DOS PEDIDOS
-router.patch('/',pedidosController.updatePedidos);
+router.patch('/:id',pedidosController.updatePedidos);
 
 //DELETA UM PEDIDO
 router.delete('/',login.obrigatorio,pedidosController.deletePedidos);   
