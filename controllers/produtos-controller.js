@@ -1,6 +1,6 @@
 const mysql = require('../mysql').pool;
 
-exports.getProdutos = async (req, res, next)=> {
+/* exports.getProdutos = async (req, res, next)=> {
     try {
         const query = 'SELECT * FROM produtos;';
         const result = await mysql.execute(query, [req.params.id]);
@@ -35,9 +35,9 @@ exports.getProdutos = async (req, res, next)=> {
     } catch (error) {
         return res.status(500).send({ error: error });
     }
-};
+}; */
 
-/* exports.getProdutos = (req, res, next) => {
+exports.getProdutos = (req, res, next) => {
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error:error })}
         conn.query(
@@ -64,9 +64,9 @@ exports.getProdutos = async (req, res, next)=> {
             }
         )
     });
-} */
+}
 
-exports.getUmproduto = async (req, res, next)=> {
+/* exports.getUmproduto = async (req, res, next)=> {
     try {
         const query = 'SELECT * FROM produtos WHERE id = ?;';
         const result = await mysql.execute(query, [req.params.id]);
@@ -97,10 +97,10 @@ exports.getUmproduto = async (req, res, next)=> {
     } catch (error) {
         return res.status(500).send({ error: error });
     }
-};
+}; */
 
 
-/* exports.getUmproduto = (req, res, next) => {
+exports.getUmproduto = (req, res, next) => {
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error:error })}
         conn.query(
@@ -139,9 +139,9 @@ exports.getUmproduto = async (req, res, next)=> {
             }
         )
     });
-} */
+}
 
-exports.postProduto = async (req, res, next) => {
+/* exports.postProduto = async (req, res, next) => {
     try {
         const query = 'INSERT INTO produtos(id_grupo, id_marca, id_locacao, status, descricao, estoque_min, estoque_max) VALUES (?, ?, ?, ?, ?, ?, ?)';
         const result = await mysql.execute(query, [
@@ -176,9 +176,9 @@ exports.postProduto = async (req, res, next) => {
     } catch (error) {
         return res.status(500).send({ error: error });
     }
-};
+}; */
 
-/* exports.postProduto = (req, res, next) =>{
+exports.postProduto = (req, res, next) =>{
     console.log(req.file);
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
@@ -207,9 +207,9 @@ exports.postProduto = async (req, res, next) => {
             }
         )   
     });
-} */
+}
 
-// Modificar produto
+/* // Modificar produto
 exports.updateProduto = async (req, res, next) => {
 
     try {
@@ -254,9 +254,9 @@ exports.updateProduto = async (req, res, next) => {
     } catch (error) {
         return res.status(500).send({ error: error });
     }
-};
+}; */
 
-/* exports.updateProduto = (req, res, next) =>{
+exports.updateProduto = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
@@ -301,9 +301,9 @@ exports.updateProduto = async (req, res, next) => {
             }
         )   
     });
-} */
+}
 
-exports.deleteProduto = async (req, res, next) => {
+/* exports.deleteProduto = async (req, res, next) => {
     try {
         const query = `DELETE FROM produtos WHERE id = ?`;
         await mysql.execute(query, [req.params.id]);
@@ -330,11 +330,11 @@ exports.deleteProduto = async (req, res, next) => {
     } catch (error) {
         return res.status(500).send({ error: error });
     }
-};
+}; */
 
 
 
-/* exports.deleteProduto = (req, res, next) =>{
+exports.deleteProduto = (req, res, next) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(
@@ -366,4 +366,4 @@ exports.deleteProduto = async (req, res, next) => {
             }
         )   
     });
-} */
+}
