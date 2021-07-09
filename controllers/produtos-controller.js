@@ -1,6 +1,6 @@
 const mysql = require('../mysql').pool;
 
-exports.getProduto = async (req, res, next)=> {
+exports.getProdutos = async (req, res, next)=> {
     try {
         const query = 'SELECT * FROM produtos;';
         const result = await mysql.execute(query, [req.params.id]);
@@ -139,7 +139,7 @@ exports.getUmproduto = async (req, res, next)=> {
 
 exports.postProduto = async (req, res, next) => {
     try {
-        const query = 'INSERT INTO produtos(id_grupo, id_marca, id_locacao, status, descricao, estoque_min, estoque_max) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        const query = 'INSERT INTO produtos(id_grupo, id_marca, id_locacao, status, descricao, estoque_min, estoque_max) VALUES (?, ?, ?, ?, ?, ?, ?)';
         const result = await mysql.execute(query, [
             req.body.id_grupo,
             req.body.id_marca,
