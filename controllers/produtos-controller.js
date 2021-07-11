@@ -257,6 +257,7 @@ exports.updateProduto = async (req, res, next) => {
 }; */
 
 exports.updateProduto = (req, res, next) =>{
+    console.log(req.file);
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({ error : error })}
         conn.query(

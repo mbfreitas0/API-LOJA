@@ -8,7 +8,7 @@ var pool = mysql.createPool({
     "port": process.env.MYSQL_PORT
 });
 
-exports.execute = (query, params=[]) => {
+/* exports.execute = (query, params=[]) => {
     return new Promise((resolve, reject) => {
         pool.query(query, params, (error, result, fields) => {
             if (error) {
@@ -18,7 +18,7 @@ exports.execute = (query, params=[]) => {
             }
         });
     })
-}
+} */
 
 exports.pool = pool;
 

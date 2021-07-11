@@ -32,11 +32,12 @@ const upload = multer({
 
 //RETORNA TODOS OS PRODUTOS
 router.get('/', produtosController.getProdutos);
+
 //INSERE UM PRODUTO
 router.post('/',login.obrigatorio, produtosController.postProduto);  
 
 //RETORNA OS DADOS DE UM PRODUTO
-router.get('/:id', login.obrigatorio,produtosController.getUmproduto);
+router.get('/:id', produtosController.getUmproduto);
 
 //ALTERA UM PRODUTO
 router.patch('/:id',login.obrigatorio, produtosController.updateProduto);
